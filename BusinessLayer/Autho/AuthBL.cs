@@ -46,5 +46,34 @@ namespace BusinessLayer.Autho
             }
             return new Tuple<string, UserData>(message, userData);
         }
+        public Tuple<string, OTPInfo> SenOTP(int Rid)
+        {
+            OTPInfo userData = new OTPInfo();
+            string message = string.Empty;
+            try
+            {
+                var result = authDB.SendOTP(Rid);
+                if (!string.IsNullOrEmpty(result.Item1))
+                {
+                    message = result.Item1;
+                    return new Tuple<string, OTPInfo>(message, userData);
+                }
+                else
+                {
+                    var dt = result.Item2;
+                    userData.Template = dt.Rows[0]["msg"].ToString();
+                    userData.Mobile = dt.Rows[0]["mobile"].ToString();
+                    //userData.Email = dt.Rows[0]["Email"].ToString();
+                    
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+            }
+            return new Tuple<string, OTPInfo>(message, userData);
+        }
+
     }
 }

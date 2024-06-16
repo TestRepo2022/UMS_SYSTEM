@@ -16,6 +16,7 @@ namespace APISERVICE.Controllers
 
         [HttpPost]
         [Route("ValidateUser")]
+
         public IActionResult ValidateUser(UserLogin user)
         {
             try
@@ -23,6 +24,7 @@ namespace APISERVICE.Controllers
                 var result=authBL.ValidateUser(user);
                 if(string.IsNullOrEmpty(result.Item1))
                 {
+                    var result2=authBL.SenOTP(Convert.ToInt32(result.Item2.Rid));
                     response.Message = "User validated successfully!";
                     response.Status = 200;
                     response.Ok = true;
