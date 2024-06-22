@@ -4,16 +4,9 @@ using System.Diagnostics;
 
 namespace APP.Controllers
 {
-    public class HomeController : Controller
+    public class DashboardController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
+        public IActionResult Home()
         {
             return View();
         }

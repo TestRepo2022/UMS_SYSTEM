@@ -28,7 +28,8 @@ namespace APISERVICE.Controllers
                     response.Message = "User validated successfully!";
                     response.Status = 200;
                     response.Ok = true;
-                    response.Data = result.Item2;
+                    //response.Data = result.Item2;
+                    response.Token = "skfjhdsfsfwewewerwewre";
 
                 }
                 else
